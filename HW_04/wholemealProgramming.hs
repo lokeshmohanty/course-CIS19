@@ -35,9 +35,7 @@ map' :: (a -> b) -> [a] -> [b]
 map' f = foldr (\a -> \b -> f a : b) []
 
 myfoldl :: (a -> b -> a) -> a -> [b] -> a
-myfoldl f base xs = foldr (func f) base xs
-
-func f a b = f b a
+myfoldl f base xs = foldr (flip f) base $ reverse xs
 
 -- Exercise 4: Finding primes
 
@@ -55,5 +53,5 @@ removeDuplicate :: (Eq a) => [a] -> [a]
 removeDuplicate [] = []
 removeDuplicate (x:xs) = x : (removeDuplicate $ dropWhile (\y -> y == x) xs)
 
--- By Riemann Hypothesis
+-- TODO: Find Primes by Riemann Hypothesis
 
